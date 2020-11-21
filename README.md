@@ -72,5 +72,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# Feel fee to discovery online json parser on website:
-[http://jsondev.org]
+# Visit onlne demo with Json Editor Online: 
+  http://jsondev.org
