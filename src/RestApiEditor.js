@@ -326,16 +326,7 @@ export default class RestApiEditor extends Component {
 
             let headers = {
                 'Content-Type': 'application/json;charset=utf-8',
-                // 'Access-Control-Allow-Origin': '*/*',
-                // 'User-Agent': 'PostmanRuntime/7.26.5',
                 'Accept': '*/*',
-                // 'User-Agent': 'Jsondev-RequestAPI',
-                // 'Cache-Control': null,
-                // 'X-Requested-With': null,
-                // 'Accept-Encoding': 'gzip, deflate, br',
-                // 'Connection': 'keep-alive',
-                // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-                // 'Access-Control-Allow-Headers': '*',
             }
 
 
@@ -412,16 +403,7 @@ export default class RestApiEditor extends Component {
                 })
                 .catch(function (error) {
                     console.log('error request api');
-                    // let errorJson = error.toJSON();
-                    // console.log(errorJson);
                     console.log('NetworkStatus: ' + error.toString());
-
-                    console.log(error.response);
-                    // let jsonCallBack = {
-                    //     data: error.toString(),
-                    //     status: 0
-                    // }
-                    // component.props.parentCallback(jsonCallBack);
                     let statusText ='';
                     try {
                         statusText = error.response.statusText;
