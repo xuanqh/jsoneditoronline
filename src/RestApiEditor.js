@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Nav from "react-bootstrap/Nav";
-import {Button, Col, ListGroup, Row, Toast} from "react-bootstrap";
+import {Button, Col, ListGroup, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import DropdownItem from "react-bootstrap/DropdownItem";
@@ -31,7 +31,6 @@ export default class RestApiEditor extends Component {
             body_type: 'none',
             body_string: null,
             url_test: '',
-            showToast: false,
             showLoading: false,
             message_toast: '',
             codeResult: '',
@@ -318,7 +317,6 @@ export default class RestApiEditor extends Component {
                 message_toast: message,
                 showLoading: false
             })
-            this.setShow(true);
             console.log("Data is In-Valid");
         } else {
             // send request api
@@ -386,18 +384,13 @@ export default class RestApiEditor extends Component {
                     let dataResponse = response.data;
                     if (dataResponse != null) {
                         //send data to application
-                        let jsonCallBack = {
-                            data: dataResponse,
-                            status: 1
-                        }
 
 
                         component.setState({
                             showLoading: false,
                             codeResult: JSON.stringify(dataResponse),
-                            message_toast: 'Sent Rest API has successfully. Please check Json Result on Right side.'
+                            message_toast: ''
                         })
-                        component.setShow(true);
 
                     }
                 })
@@ -412,20 +405,12 @@ export default class RestApiEditor extends Component {
                     }
                     component.setState({
                         showLoading: false,
-                        codeResult: error.toString() + ".\n" + statusText,
+                        codeResult: '',
                         message_toast: error.toString() + ".\n" + statusText
                     })
-                    component.setShow(true);
                 });
         }
     }
-
-    setShow(showToast) {
-        this.setState({
-            showToast: showToast
-        })
-    }
-
     render() {
 
         return (
@@ -607,26 +592,15 @@ export default class RestApiEditor extends Component {
                     }
                 </ul>
 
-                {/*<Row className={'mt-4'}>*/}
-                {/*    <Col xs={6}>*/}
-                {/*        <Toast onClose={() => this.setShow(false)} show={this.state.showToast} delay={3000}*/}
-                {/*               autohide>*/}
-                {/*            <Toast.Header>*/}
-                {/*                <img*/}
-                {/*                    className="rounded mr-2"*/}
-                {/*                    alt=""*/}
-                {/*                />*/}
-                {/*                <strong className="mr-auto">Alert message!</strong>*/}
-                {/*            </Toast.Header>*/}
-                {/*            <Toast.Body>{this.state.message_toast}</Toast.Body>*/}
-                {/*        </Toast>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
-
                 <Row>
                     <Col xl={12}>
-                        <p>Result</p>
+                        <p className={'mt-4'} style={{color: 'green'}}>Result</p>
                         <textarea className={'p-2'} style={{width:'100%', minHeight:'200px'}} placeholder={'Rest Api result is displayed in here...'} value={this.state.codeResult}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xl={12}>
+                        <p style={{textAlign:'center', color:'red'}}>{this.state.message_toast}</p>
                     </Col>
                 </Row>
             </div>
